@@ -188,6 +188,7 @@ jobs:
             : "                  https://repo.almalinux.org/almalinux/9/devel/x86_64/os/Packages/"
             : "Explanation: https://wiki.almalinux.org/repos/AlmaLinux.html"
             yum -y install make gcc-toolset-14-gcc gcc-toolset-14-gcc-c++
+            . /opt/rh/gcc-toolset-14/enable
             cd /work
             ls -l
             export CPPFLAGS="-Wall"
