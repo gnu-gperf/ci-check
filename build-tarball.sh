@@ -29,7 +29,6 @@ cd "$package"
 ./autopull.sh
 
 # Fetch extra files and generate files (uses packages wget, python3, automake, autoconf, m4).
-date=`date --utc --iso-8601 | sed -e 's/-//g'`; sed -i -e "/version_string/s/\";/-${date}\";/" src/version.cc
 ./autogen.sh
 
 # Configure (uses package 'file').
@@ -38,5 +37,6 @@ date=`date --utc --iso-8601 | sed -e 's/-//g'`; sed -i -e "/version_string/s/\";
 make > log2 2>&1; rc=$?; cat log2; test $rc = 0 || exit 1
 # Run the tests.
 make check > log3 2>&1; rc=$?; cat log3; test $rc = 0 || exit 1
-# Check that tarballs are correct.
-make distcheck > log4 2>&1; rc=$?; cat log4; test $rc = 0 || exit 1
+# Create a tarball.
+date=`date --utc --iso-8601 | sed -e 's/-//g'`
+make dist VERSION="${date}" > log4 2>&1; rc=$?; cat log4; test $rc = 0 || exit 1
