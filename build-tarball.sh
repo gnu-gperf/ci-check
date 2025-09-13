@@ -23,7 +23,7 @@ package="$1"
 
 set -e
 
-. init-git.sh
+. ./init-git.sh
 
 # Fetch sources (uses package 'git').
 git clone --depth 1 https://git.savannah.gnu.org/git/"$package".git
